@@ -4,13 +4,13 @@ import smtplib
 import ssl
 import json
 from email.mime.text import MIMEText
-
+from os import getcwd,path
 
 
 smtp_address = 'smtp.gmail.com'
 smtp_port = 465
 
-with open(file="data.json", mode = "r") as f:
+with open(file=path.join(getcwd(),"data.json"), mode = "r") as f:
     Data = json.loads(f)
     f.close()
 

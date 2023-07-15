@@ -1,4 +1,5 @@
-ssl
-requests
-smtplib
 json
+requests
+email
+sftp
+ssl
