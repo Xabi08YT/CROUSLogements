@@ -3,24 +3,30 @@ import time
 import smtplib
 import ssl
 import json
+from email.mime.text import MIMEText
 
 
 
 smtp_address = 'smtp.gmail.com'
 smtp_port = 465
 
-"""with open(file="data.json", mode = "r") as f:
+with open(file="data.json", mode = "r") as f:
     Data = json.loads(f)
-    f.close()"""
+    f.close()
 
 
 def send_mail(content = "Message Automatique: Visionnez les appart disponibles sur le site du crous"):
     try:
+        msg = MIMEText(content)
+        msg['Subject'] = "Alerte CROUS, Appartement Disponible"
+        msg['From'] = Data["Sender"]
+        msg['To'] = ', '.join(Data["to"])
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as srv:
             srv.login(Data["Sender"],Data["SenderPSW"])
-            srv.sendmail(Data["to"],content)
-    except Exception:
+            srv.sendmail(from_addr=Data["Sender"],to_addrs = Data["to"],msg=msg.as_string())
+    except Exception as e:
+        print(e)
         pass
 
 
