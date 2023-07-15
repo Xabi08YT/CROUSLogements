@@ -1,0 +1,5 @@
+{
+    "Sender": "emailoftheserver",
+    "SenderPSW": "passwordoftheaccount",
+    "to": "emailofthereceiver"
+}

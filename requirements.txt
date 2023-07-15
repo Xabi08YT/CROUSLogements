@@ -1,0 +1,4 @@
+ssl
+requests
+smtplib
+json
