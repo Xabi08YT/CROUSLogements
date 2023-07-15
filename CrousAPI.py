@@ -11,7 +11,7 @@ smtp_address = 'smtp.gmail.com'
 smtp_port = 465
 
 with open(file=path.join(getcwd(),"data.json"), mode = "r") as f:
-    Data = json.loads(f)
+    Data = json.load(f)
     f.close()
 
 
@@ -20,7 +20,7 @@ def send_mail(content = "Message Automatique: Visionnez les appart disponibles s
         msg = MIMEText(content)
         msg['Subject'] = "Alerte CROUS, Appartement Disponible"
         msg['From'] = Data["Sender"]
-        msg['To'] = ', '.join(Data["to"])
+        msg['To'] = Data["to"]
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as srv:
             srv.login(Data["Sender"],Data["SenderPSW"])
